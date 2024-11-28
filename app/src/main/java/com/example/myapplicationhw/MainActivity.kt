@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
+    private var mediaPlayer: android.media.MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,6 +41,14 @@ class MainActivity : AppCompatActivity() {
                 data = Uri.parse("tel:+994558920042")
             }
             startActivity(phoneIntent)
+        }
+        val playButton = findViewById<android.widget.Button>(R.id.button)
+
+        playButton.setOnClickListener {
+            if (mediaPlayer == null) {
+                mediaPlayer = android.media.MediaPlayer.create(this, R.raw.mahni)
+                mediaPlayer?.start()
+            }
         }
     }
 }
